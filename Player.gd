@@ -18,10 +18,13 @@ var gravity = 9.8
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 func _unhandled_input(event):
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		head.rotate_y(-event.relative.x * SENSITIVITY)
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
+	if Input.is_action_just_pressed("ui_cancel"):
+		toggle_capture()
+
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
@@ -51,7 +54,7 @@ func _physics_process(delta):
 		velocity.x = lerp(velocity.x, direction.x * speed, delta * 2.0)
 		velocity.z = lerp(velocity.z, direction.z * speed, delta * 2.0)
 	t_bob += delta * velocity.length() * float(is_on_floor())
-	camera.transform.origin = _headbob(t_bob)
+	head.transform.origin = _headbob(t_bob)
 	move_and_slide()
 	
 func _headbob(time) -> Vector3:
@@ -59,4 +62,9 @@ func _headbob(time) -> Vector3:
 	pos.y = sin(time * BOB_FEQ) * BOB_AMP
 	pos.x = cos(time * BOB_FEQ / 2) * BOB_AMP
 	return pos
-	
+
+func toggle_capture():
+	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
