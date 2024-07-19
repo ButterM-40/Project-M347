@@ -35,7 +35,7 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY
 
 	#Handle Spring
-	if Input.is_action_just_pressed("SPRINT"):
+	if Input.is_action_pressed("SPRINT"):
 		speed = SPRING_SPEED
 		print("Im running")
 	else:
