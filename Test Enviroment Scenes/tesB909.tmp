@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://df8kwq87v5nji"]
+[gd_scene load_steps=10 format=3 uid="uid://df8kwq87v5nji"]
 
-[ext_resource type="PackedScene" uid="uid://b0fv43l6vte63" path="res://Player/3D_Player.tscn" id="1_ou8si"]
-[ext_resource type="PackedScene" uid="uid://c3851ai42jmx1" path="res://Audio/audio_visualizer.tscn" id="2_xd57o"]
+[ext_resource type="Script" path="res://Player.gd" id="1_off57"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ssctq"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -15,6 +14,10 @@ background_mode = 2
 sky = SubResource("Sky_m6dyr")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_cisk1"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ruob2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5rfu4"]
 albedo_color = Color(0, 0.379453, 0.834879, 1)
@@ -39,6 +42,21 @@ transform = Transform3D(2.76102, 0, 0, 0, 1, 0, 0, 0, 3.18678, 0, 0, 0)
 use_collision = true
 size = Vector3(10, 0.2, 10)
 
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.84133, 0)
+script = ExtResource("1_off57")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+mesh = SubResource("CapsuleMesh_cisk1")
+
+[node name="Head" type="Node3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.402602, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Head"]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_ruob2")
+
 [node name="CSGBox3D4" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.72655, 1.70373, 7.4773)
 use_collision = true
@@ -51,15 +69,8 @@ use_collision = true
 size = Vector3(4.92432, 2.00502, 3.56348)
 material = SubResource("StandardMaterial3D_qhwfh")
 
-[node name="CharacterBody3D" parent="." instance=ExtResource("1_ou8si")]
-
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.88981, 0.120148, -5.19122)
 use_collision = true
 size = Vector3(6.21533, 1.2403, 3.56348)
 material = SubResource("StandardMaterial3D_d55jj")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = -1
-
-[node name="AudioVisualizer" parent="CanvasLayer" instance=ExtResource("2_xd57o")]
