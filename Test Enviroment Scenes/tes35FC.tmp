@@ -1,6 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://df8kwq87v5nji"]
+[gd_scene load_steps=10 format=3 uid="uid://df8kwq87v5nji"]
 
 [ext_resource type="PackedScene" uid="uid://b0fv43l6vte63" path="res://Player/3D_Player.tscn" id="1_ou8si"]
+[ext_resource type="PackedScene" uid="uid://c3851ai42jmx1" path="res://Audio/audio_visualizer.tscn" id="2_xd57o"]
+[ext_resource type="PackedScene" uid="uid://bix37ojc1uv8y" path="res://MainMenuScenes/ESC_Menu.tscn" id="3_c0qtj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ssctq"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -60,3 +62,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.88981, 0.120148, -5.19122)
 use_collision = true
 size = Vector3(6.21533, 1.2403, 3.56348)
 material = SubResource("StandardMaterial3D_d55jj")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="AudioVisualizer" parent="CanvasLayer" instance=ExtResource("2_xd57o")]
+
+[node name="ESCMENU" parent="CanvasLayer" instance=ExtResource("3_c0qtj")]
