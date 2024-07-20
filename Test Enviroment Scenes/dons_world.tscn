@@ -1,6 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://cokeolt20o7ka"]
+[gd_scene load_steps=15 format=3 uid="uid://cokeolt20o7ka"]
 
 [ext_resource type="PackedScene" uid="uid://duu8n1x1kt63b" path="res://EntityScenes/Player.tscn" id="1_hsc31"]
+[ext_resource type="PackedScene" uid="uid://debwyiaxcj0do" path="res://3D Models/VialRed.tscn" id="2_mvmg1"]
+[ext_resource type="PackedScene" uid="uid://cd0su0okhairg" path="res://3D Models/VialGreen.tscn" id="3_rhcc3"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_hkcrn"]
 
@@ -26,17 +28,26 @@ material = SubResource("StandardMaterial3D_greij")
 size = Vector3(10, 5, 20)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_j60l0"]
+sky_top_color = Color(1, 0.556286, 0.492913, 1)
+sky_horizon_color = Color(0.27451, 0, 0, 1)
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0.27451, 0, 0, 1)
 
 [sub_resource type="Sky" id="Sky_icbv1"]
 sky_material = SubResource("ProceduralSkyMaterial_j60l0")
 
 [sub_resource type="Environment" id="Environment_ov6wn"]
 background_mode = 2
+background_energy_multiplier = 0.33
 sky = SubResource("Sky_icbv1")
+glow_enabled = true
+glow_normalized = true
+glow_blend_mode = 1
 
 [node name="DonsWorld" type="Node3D"]
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("1_hsc31")]
+transform = Transform3D(-0.980326, 0, -0.197383, 0, 1, 0, 0.197383, 0, -0.980326, 0, 2.84133, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
@@ -69,7 +80,35 @@ shape = SubResource("BoxShape3D_7g63g")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.30405, 0.952656, 0, -0.952656, 0.30405, 0, 0, 0)
-light_energy = 1.485
+light_energy = 0.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ov6wn")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/CenterContainer"]
+layout_mode = 2
+text = "TOUCH ME"
+
+[node name="VialRed" parent="." instance=ExtResource("2_mvmg1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.37759, 0.624282)
+
+[node name="VialGreen" parent="." instance=ExtResource("3_rhcc3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.38441, 0.838762)
