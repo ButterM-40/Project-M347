@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://debwyiaxcj0do"]
+[gd_scene load_steps=6 format=3 uid="uid://ccdnuwr8fpnx8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_anrsl"]
 resource_name = "Glass"

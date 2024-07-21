@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://dy5mcb6tucr6d"]
+
+[ext_resource type="Shader" uid="uid://damhm8361byn6" path="res://3D Models/circle_shader.tres" id="1_7eush"]
+[ext_resource type="ArrayMesh" uid="uid://b6ogiet8k0edg" path="res://3D Models/Floor.obj" id="2_fyjlu"]
+[ext_resource type="Shader" uid="uid://dqu7k3nvjyfcn" path="res://3D Models/SplatterGlowEffect.tres" id="3_mk153"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2bl7i"]
+render_priority = 0
+shader = ExtResource("1_7eush")
+shader_parameter/CircleColor = Color(0.858824, 0.756863, 0.223529, 1)
+shader_parameter/Speed = Vector2(0, -1)
+shader_parameter/Extra_Opacity = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uqsmh"]
+render_priority = 0
+shader = ExtResource("3_mk153")
+
+[sub_resource type="Gradient" id="Gradient_lvpu1"]
+offsets = PackedFloat32Array(0.00373134, 1)
+colors = PackedColorArray(9.189, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_14iep"]
+gradient = SubResource("Gradient_lvpu1")
+use_hdr = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rvecd"]
+lifetime_randomness = 0.5
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 1.0
+emission_ring_radius = 4.0
+emission_ring_inner_radius = 0.0
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+color = Color(0.996078, 0.811765, 0.215686, 0.729412)
+color_ramp = SubResource("GradientTexture1D_14iep")
+
+[sub_resource type="QuadMesh" id="QuadMesh_apdiy"]
+
+[node name="SplatterGlowEffect" type="Node3D"]
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0980894, 1.40457, -1.05448)
+visible = false
+material_override = SubResource("ShaderMaterial_2bl7i")
+mesh = ExtResource("2_fyjlu")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+material_override = SubResource("ShaderMaterial_uqsmh")
+amount = 40
+lifetime = 3.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_rvecd")
+draw_pass_1 = SubResource("QuadMesh_apdiy")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="GPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.388398, -0.506479, -1.61072)
+light_color = Color(0.974028, 0.873235, 2.31028e-06, 1)
+light_energy = 2.785
+light_indirect_energy = 5.02
+light_volumetric_fog_energy = 4.596
+light_size = 0.084
+light_specular = 14.882
+omni_range = 3.829
+omni_attenuation = 0.287175

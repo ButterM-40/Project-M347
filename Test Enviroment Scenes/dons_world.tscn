@@ -1,19 +1,19 @@
 [gd_scene load_steps=15 format=3 uid="uid://cokeolt20o7ka"]
 
 [ext_resource type="PackedScene" uid="uid://duu8n1x1kt63b" path="res://EntityScenes/Player.tscn" id="1_hsc31"]
-[ext_resource type="PackedScene" uid="uid://debwyiaxcj0do" path="res://3D Models/VialRed.tscn" id="2_mvmg1"]
-[ext_resource type="PackedScene" uid="uid://cd0su0okhairg" path="res://3D Models/VialGreen.tscn" id="3_rhcc3"]
+[ext_resource type="PackedScene" uid="uid://ccdnuwr8fpnx8" path="res://3D Models/VialRed.tscn" id="2_mvmg1"]
+[ext_resource type="PackedScene" uid="uid://dwba3iqlh4sub" path="res://3D Models/VialGreen.tscn" id="3_rhcc3"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_hkcrn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o3byy"]
 size = Vector3(100, 1, 100)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rd8w4"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xuu8f"]
 albedo_color = Color(0.905882, 0.101961, 0.129412, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_unkkl"]
-material = SubResource("StandardMaterial3D_rd8w4")
+material = SubResource("StandardMaterial3D_xuu8f")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ll4kj"]
 size = Vector3(10, 1, 20)
@@ -33,13 +33,13 @@ sky_horizon_color = Color(0.27451, 0, 0, 1)
 ground_bottom_color = Color(0, 0, 0, 1)
 ground_horizon_color = Color(0.27451, 0, 0, 1)
 
-[sub_resource type="Sky" id="Sky_icbv1"]
+[sub_resource type="Sky" id="Sky_mkbgs"]
 sky_material = SubResource("ProceduralSkyMaterial_j60l0")
 
 [sub_resource type="Environment" id="Environment_ov6wn"]
 background_mode = 2
 background_energy_multiplier = 0.33
-sky = SubResource("Sky_icbv1")
+sky = SubResource("Sky_mkbgs")
 glow_enabled = true
 glow_normalized = true
 glow_blend_mode = 1
@@ -79,7 +79,7 @@ mesh = SubResource("BoxMesh_8krcy")
 shape = SubResource("BoxShape3D_7g63g")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.30405, 0.952656, 0, -0.952656, 0.30405, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.30405, 0.952656, 0, -0.952656, 0.30405, 0, -0.107723, 0)
 light_energy = 0.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
