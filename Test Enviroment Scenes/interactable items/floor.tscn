@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=3 uid="uid://dnknpblfuoni8"]
+
+[ext_resource type="Script" path="res://interaction_test/interact_items.gd" id="1_2bili"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_rdgfm"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_qging"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dpohw"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_khg5b"]
+
+[sub_resource type="Animation" id="Animation_ubbia"]
+resource_name = "pressdown"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("button:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.075, 0), Vector3(0, 0.01, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8ly8g"]
+resource_name = "pressup"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("button:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.01, 0), Vector3(0, 0.075, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7fcbu"]
+_data = {
+"pressdown": SubResource("Animation_ubbia"),
+"pressup": SubResource("Animation_8ly8g")
+}
+
+[node name="floor_button" type="StaticBody3D"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+script = ExtResource("1_2bili")
+
+[node name="base_button" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_rdgfm")
+
+[node name="button" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.92, 0, 0, 0, 0.075, 0, 0, 0, 0.92, 0, 0.075, 0)
+mesh = SubResource("CylinderMesh_qging")
+surface_material_override/0 = SubResource("StandardMaterial3D_dpohw")
+
+[node name="base_collsion_box" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, 0.05, 0)
+shape = SubResource("BoxShape3D_khg5b")
+
+[node name="press_animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7fcbu")
+}
