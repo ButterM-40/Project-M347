@@ -3,7 +3,7 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dunkacrlnf5ik"
+uid="uid://b0rfktn5bvea7"
 path="res://.godot/imported/scientist.glb-a24d73ee9dda3a468154dd35525171b1.scn"
 
 [deps]
@@ -31,7 +31,7 @@ animation/remove_immutable_tracks=true
 import_script/path=""
 _subresources={
 "animations": {
-"idle": {
+"DC-idle": {
 "save_to_file/enabled": false,
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "",
@@ -1830,7 +1830,7 @@ _subresources={
 "slice_99/start_frame": 0,
 "slices/amount": 0
 },
-"walk": {
+"DC-walk": {
 "save_to_file/enabled": false,
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "",

@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://cokeolt20o7ka"]
+[gd_scene load_steps=21 format=3 uid="uid://cokeolt20o7ka"]
 
-[ext_resource type="PackedScene" uid="uid://duu8n1x1kt63b" path="res://EntityScenes/Player.tscn" id="1_hsc31"]
 [ext_resource type="PackedScene" uid="uid://ccdnuwr8fpnx8" path="res://3D Models/VialRed.tscn" id="2_mvmg1"]
+[ext_resource type="PackedScene" uid="uid://b0fv43l6vte63" path="res://Player/3D_Player.tscn" id="3_6iv87"]
 [ext_resource type="PackedScene" uid="uid://dwba3iqlh4sub" path="res://3D Models/VialGreen.tscn" id="3_rhcc3"]
+[ext_resource type="Script" path="res://Test Enviroment Scenes/3rdPersonCamera3D.gd" id="4_sjpxo"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_hkcrn"]
 
@@ -72,9 +73,6 @@ material = SubResource("StandardMaterial3D_srsr3")
 
 [node name="DonsWorld" type="Node3D"]
 
-[node name="CharacterBody3D" parent="." instance=ExtResource("1_hsc31")]
-transform = Transform3D(-0.980326, 0, -0.197383, 0, 1, 0, 0.197383, 0, -0.980326, 0, 2.84133, 0)
-
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
@@ -111,28 +109,6 @@ light_energy = 0.0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ov6wn")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Control" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Button" type="Button" parent="CanvasLayer/Control/CenterContainer"]
-layout_mode = 2
-text = "TOUCH ME"
-
 [node name="VialRed" parent="." instance=ExtResource("2_mvmg1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.37759, 0.624282)
 
@@ -158,3 +134,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 visible = false
 light_color = Color(0, 1, 0, 1)
 omni_range = 8.22528
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("3_6iv87")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.66794, 0)
+
+[node name="3rdPersonCamera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.97307, 0.230508, 0, -0.230508, 0.97307, 0, 9.09733, 8.31759)
+script = ExtResource("4_sjpxo")
