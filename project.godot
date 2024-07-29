@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="Project M347"
+run/main_scene="res://Scene Test_World/test_world.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameState="*res://GameState.gd"
 
 [input]
 
