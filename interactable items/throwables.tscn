@@ -1,10 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://7dtkp2rqwtlv"]
+[gd_scene load_steps=5 format=3 uid="uid://7dtkp2rqwtlv"]
 
 [ext_resource type="PackedScene" uid="uid://dwba3iqlh4sub" path="res://3D Models/VialGreen.tscn" id="1_kaelg"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_u1f8b"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_m8vlk"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_vn17l"]
 
 [node name="Throwables" type="RigidBody3D"]
 physics_material_override = SubResource("PhysicsMaterial_u1f8b")
@@ -16,3 +18,12 @@ transform = Transform3D(0.0699551, 0, 0, 0, 0.311562, 0, 0, 0, 0.0722566, 0, 0.0
 shape = SubResource("BoxShape3D_m8vlk")
 
 [node name="VialGreen" parent="." instance=ExtResource("1_kaelg")]
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(3, 0, 0, 0, -0.1, 0, 0, 0, 3, 0, 0, 0)
+shape = SubResource("CylinderShape3D_vn17l")
+
+[node name="AOETimer" type="Timer" parent="Area3D"]
+autostart = true
