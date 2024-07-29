@@ -5,6 +5,8 @@ var state := {
 	"key": 0
 }
 
+var interact_label: Label
+
 func get_value(key):
 	if state.has(key):
 		return state[key]
