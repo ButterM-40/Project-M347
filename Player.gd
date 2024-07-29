@@ -19,11 +19,15 @@ var is_jumping = false
 const BASE_FOV = 75.0
 const FOV_CHANGE = 1.5
 
-@onready var head = $Head
+#@onready var head = $Head
 #@onready var camera = $Head/Camera3D
 @onready var current_cam = get_viewport().get_camera_3d()
 @onready var esc_menu = $UI/ESCMENU
 @onready var anim_tree: AnimationTree = $scientist/AnimationTree
+
+# Throwable
+var throwable = preload("res://interactable items/throwables.tscn")
+var CanThrow = true
 
 func _ready():
 	GameState.interact_label = $UI/CenterContainer/InteractLabel
@@ -80,6 +84,9 @@ func _physics_process(delta):
 
 	update_animations()
 	move_and_slide()
+	
+# Throwing function
+	throwing()
 
 func _headbob(time) -> Vector3:
 	var pos = Vector3.ZERO
@@ -100,3 +107,24 @@ func update_animations():
 	anim_tree["parameters/conditions/moving"] = plane_vel.length() != 0
 	anim_tree["parameters/conditions/not_moving"] = plane_vel.length() == 0
 	#anim_tree["parameters/conditions/on_floor"] = is_on_floor()
+	
+func throwing():
+	if Input.is_action_just_released("THROWING") && CanThrow:
+		var throwins = throwable.instantiate()
+		throwins.position = $scientist/Camera3D/ThrowablePos.global_position
+		get_tree().current_scene.add_child(throwins)
+		
+		CanThrow = false
+		$scientist/ThrowTimer.start()
+		
+		var camera = $scientist/Camera3D
+		var force = -20
+		var arch = 12
+		var player_rotation = camera.global_transform.basis.z.normalized()
+		
+		throwins.apply_central_impulse(player_rotation * force + Vector3(0, arch, 0))
+		
+
+
+func _on_timer_timeout():
+	CanThrow = true
