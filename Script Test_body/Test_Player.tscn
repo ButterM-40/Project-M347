@@ -26,6 +26,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Crosshairs" type="Control" parent="Hud"]
 layout_mode = 1
@@ -36,6 +37,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Y-axis" type="Line2D" parent="Hud/Crosshairs"]
 position = Vector2(9.16289e-08, -2.09623)

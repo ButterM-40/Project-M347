@@ -1,12 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://b0fv43l6vte63"]
+[gd_scene load_steps=7 format=3 uid="uid://b0fv43l6vte63"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_6wn0m"]
 [ext_resource type="PackedScene" uid="uid://c3851ai42jmx1" path="res://Audio/audio_visualizer.tscn" id="2_g6l4h"]
 [ext_resource type="PackedScene" uid="uid://bix37ojc1uv8y" path="res://MainMenuScenes/ESC_Menu.tscn" id="3_5j0mu"]
+[ext_resource type="PackedScene" uid="uid://cugt6tujkvqcp" path="res://3D Models/scientist.tscn" id="4_amorg"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_cisk1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ruob2"]
+radius = 0.43
+height = 4.55507
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.84133, 0)
@@ -20,12 +23,19 @@ layer = -1
 [node name="AudioVisualizer" parent="CanvasLayer" instance=ExtResource("2_g6l4h")]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("CapsuleMesh_cisk1")
 
+[node name="scientist" parent="." instance=ExtResource("4_amorg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.84923, 0.0594977)
+
 [node name="Head" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.402602, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.50805, -0.511375)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 0.896904, 0.442226, 0, -0.442226, 0.896904, 0, 0, 0)
+visible = false
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.546605, 0)
 shape = SubResource("CapsuleShape3D_ruob2")
