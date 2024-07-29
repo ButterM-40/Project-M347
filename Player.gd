@@ -26,6 +26,8 @@ const FOV_CHANGE = 1.5
 @onready var anim_tree: AnimationTree = $scientist/AnimationTree
 
 func _ready():
+	GameState.interact_label = $UI/CenterContainer/InteractLabel
+	print(GameState.interact_label)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 func _unhandled_input(event):

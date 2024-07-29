@@ -1,10 +1,11 @@
 extends RayCast3D
 
-@onready var prompt = get_tree().get_root().get_node("InteractLabel")
+@onready var prompt: Label
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
-	#prompt.text = ""
+	prompt = GameState.interact_label
+	prompt.text = ""
 	
 	if is_colliding():
 		var collider = get_collider()
