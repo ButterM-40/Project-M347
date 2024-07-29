@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0vjj5nfdmsc4"]
+
+[ext_resource type="Script" path="res://3d_splatter.gd" id="1_pexct"]
+
+[node name="3DSplatter" type="Node3D"]
+script = ExtResource("1_pexct")
