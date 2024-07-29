@@ -22,15 +22,17 @@ const FOV_CHANGE = 1.5
 @onready var head = $Head
 #@onready var camera = $Head/Camera3D
 @onready var current_cam = get_viewport().get_camera_3d()
-@onready var esc_menu = $CanvasLayer/ESCMENU
+@onready var esc_menu = $UI/ESCMENU
 @onready var anim_tree: AnimationTree = $scientist/AnimationTree
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
 func _unhandled_input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		rotate_y(-event.relative.x * SENSITIVITY)
 		current_cam.rotate_x(event.relative.y * SENSITIVITY)
-		current_cam.rotation.x = clamp(current_cam.rotation.x, deg_to_rad(-40), deg_to_rad(60))
+		current_cam.rotation.x = clamp(current_cam.rotation.x, deg_to_rad(-80), deg_to_rad(60))
 	if event.is_action_pressed("Setting"):
 		esc_menu.pause()
 
