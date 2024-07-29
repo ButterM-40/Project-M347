@@ -1,0 +1,88 @@
+[gd_scene load_steps=11 format=3 uid="uid://df8kwq87v5nji"]
+
+[ext_resource type="PackedScene" uid="uid://b0fv43l6vte63" path="res://Player/3D_Player.tscn" id="1_ou8si"]
+[ext_resource type="PackedScene" uid="uid://dwba3iqlh4sub" path="res://3D Models/VialGreen.tscn" id="2_a4c5t"]
+[ext_resource type="PackedScene" uid="uid://ccdnuwr8fpnx8" path="res://3D Models/VialRed.tscn" id="2_gk1n7"]
+[ext_resource type="PackedScene" uid="uid://dy5mcb6tucr6d" path="res://3D Models/SplatterGlowEffect.tscn" id="4_e0ols"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e341v"]
+sky_top_color = Color(1, 0.556286, 0.492913, 1)
+sky_horizon_color = Color(0.27451, 0, 0, 1)
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0.27451, 0, 0, 1)
+
+[sub_resource type="Sky" id="Sky_icbv1"]
+sky_material = SubResource("ProceduralSkyMaterial_e341v")
+
+[sub_resource type="Environment" id="Environment_wlxu3"]
+background_mode = 2
+background_energy_multiplier = 0.52
+sky = SubResource("Sky_icbv1")
+glow_enabled = true
+glow_normalized = true
+glow_strength = 1.11
+glow_blend_mode = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5rfu4"]
+albedo_color = Color(0, 0.379453, 0.834879, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qhwfh"]
+albedo_color = Color(0.819257, 0.679999, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d55jj"]
+albedo_color = Color(0.0770496, 0.0417671, 0.135505, 1)
+
+[node name="Test World" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0.222879, 4.46477, -7.47884)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wlxu3")
+
+[node name="Terrain" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Terrain"]
+transform = Transform3D(2.76102, 0, 0, 0, 1, 0, 0, 0, 3.18678, 0, 0, 0)
+use_collision = true
+size = Vector3(10, 0.2, 10)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.72655, 1.70373, 7.4773)
+use_collision = true
+size = Vector3(4.92432, 3.2768, 3.90771)
+material = SubResource("StandardMaterial3D_5rfu4")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.25379, 0.962532, 0.8479)
+use_collision = true
+size = Vector3(4.92432, 2.00502, 3.56348)
+material = SubResource("StandardMaterial3D_qhwfh")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.88981, 0.120148, -5.19122)
+use_collision = true
+size = Vector3(6.21533, 1.2403, 3.56348)
+material = SubResource("StandardMaterial3D_d55jj")
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("1_ou8si")]
+
+[node name="Potions" type="Node3D" parent="."]
+
+[node name="VialRed" parent="Potions" instance=ExtResource("2_gk1n7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.755495, 1.44352, -1.86796)
+
+[node name="VialGreen" parent="Potions" instance=ExtResource("2_a4c5t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.42601, -1.84463)
+
+[node name="SplatterGlowEffect" parent="Potions" instance=ExtResource("4_e0ols")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.42975, 0.979854, -7.97966)
+
+[node name="OmniLight3D2" parent="Potions/SplatterGlowEffect/GPUParticles3D" index="0"]
+light_energy = 2.455
+light_indirect_energy = 0.166
+light_volumetric_fog_energy = 4.251
+light_specular = 1.667
+
+[editable path="Potions/SplatterGlowEffect"]
