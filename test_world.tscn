@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://df8kwq87v5nji"]
+[gd_scene load_steps=11 format=3 uid="uid://c8ocgoc2l68pa"]
 
 [ext_resource type="PackedScene" uid="uid://b0fv43l6vte63" path="res://Player/3D_Player.tscn" id="1_ou8si"]
 [ext_resource type="PackedScene" uid="uid://dwba3iqlh4sub" path="res://3D Models/VialGreen.tscn" id="2_a4c5t"]
@@ -67,6 +67,11 @@ size = Vector3(6.21533, 1.2403, 3.56348)
 material = SubResource("StandardMaterial3D_d55jj")
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("1_ou8si")]
+maxHealth = 23
+
+[node name="TextureProgressBar" parent="CharacterBody3D/CanvasLayer/UI Health" index="7"]
+max_value = 100.0
+value = 23.0
 
 [node name="Potions" type="Node3D" parent="."]
 
@@ -79,10 +84,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.42601, -1.84463)
 [node name="SplatterGlowEffect" parent="Potions" instance=ExtResource("4_e0ols")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.42975, 0.979854, -7.97966)
 
-[node name="OmniLight3D2" parent="Potions/SplatterGlowEffect/GPUParticles3D" index="0"]
-light_energy = 2.455
-light_indirect_energy = 0.166
-light_volumetric_fog_energy = 4.251
-light_specular = 1.667
-
+[editable path="CharacterBody3D"]
+[editable path="CharacterBody3D/CanvasLayer/UI Health"]
 [editable path="Potions/SplatterGlowEffect"]

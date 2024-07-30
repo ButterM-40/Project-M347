@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Script Test_body/Bean_Testbody.gd" id="1_g7rln"]
 [ext_resource type="Script" path="res://interaction_test/interaction ray.gd" id="2_e4p6h"]
-[ext_resource type="PackedScene" uid="uid://dnknpblfuoni8" path="res://interactable items/floor.tscn" id="3_hw46q"]
+[ext_resource type="PackedScene" uid="uid://dnknpblfuoni8" path="res://Test Enviroment Scenes/interactable items/floor.tscn" id="3_hw46q"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ka0ki"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)

@@ -1,0 +1,126 @@
+[gd_scene load_steps=5 format=3 uid="uid://jvkgf8m8uhih"]
+
+[ext_resource type="Script" path="res://MainMenuScenes/TitleScene.gd" id="1_n28l6"]
+[ext_resource type="FontFile" uid="uid://bkd46ofhpdm8g" path="res://UI/conthrax-sb.otf" id="2_c2rnx"]
+[ext_resource type="Texture2D" uid="uid://dcf7uomly1gne" path="res://MainMenuScenes/TitleScreen/IMG_9907.png" id="3_y606o"]
+[ext_resource type="Texture2D" uid="uid://b7jtigc4skopp" path="res://MainMenuScenes/TitleScreen/IMG_9908.png" id="4_n5g3o"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_n28l6")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 28.725
+anchor_bottom = 16.175
+offset_right = -47.0
+offset_bottom = -6.10352e-05
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_c2rnx")
+theme_override_font_sizes/font_size = 50
+text = "    Project M347
+"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Play" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_c2rnx")
+theme_override_font_sizes/font_size = 44
+text = "Play"
+flat = true
+
+[node name="Setting" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_c2rnx")
+theme_override_font_sizes/font_size = 44
+text = "Settings"
+flat = true
+
+[node name="Quit" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_c2rnx")
+theme_override_font_sizes/font_size = 44
+text = "Quit
+"
+flat = true
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "End Credits"
+flat = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Off" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(572, 346)
+scale = Vector2(0.54, 0.5)
+texture = ExtResource("3_y606o")
+
+[node name="On" type="Sprite2D" parent="CanvasLayer"]
+visible = false
+position = Vector2(572, 346)
+scale = Vector2(0.54, 0.5)
+texture = ExtResource("4_n5g3o")
+
+[node name="Settings" type="Node2D" parent="."]
+visible = false
+position = Vector2(524, 234)
+scale = Vector2(1.95, 1.95)
+
+[node name="ColorRect" type="ColorRect" parent="Settings"]
+offset_right = 158.0
+offset_bottom = 100.0
+color = Color(0.254902, 0.254902, 0.254902, 0.568627)
+
+[node name="Label" type="Label" parent="Settings"]
+offset_left = 6.0
+offset_top = 4.0
+offset_right = 94.0
+offset_bottom = 27.0
+theme_override_fonts/font = ExtResource("2_c2rnx")
+text = "Music Volume"
+
+[node name="HSlider" type="HSlider" parent="Settings"]
+offset_left = 17.0
+offset_top = 43.0
+offset_right = 145.0
+offset_bottom = 59.0
+min_value = -80.0
+max_value = 0.0
+
+[connection signal="mouse_entered" from="MarginContainer/HBoxContainer/VBoxContainer/Play" to="." method="_on_play_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/HBoxContainer/VBoxContainer/Play" to="." method="_on_play_mouse_exited"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Setting" to="." method="_on_setting_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="changed" from="Settings/HSlider" to="." method="_on_h_slider_changed"]
