@@ -1,5 +1,8 @@
 extends CharacterBody3D
 
+class_name Player
+
+
 var speed
 const SPRINT_SPEED = 12.0
 const WALK_SPEED = 6.0
@@ -24,7 +27,14 @@ const FOV_CHANGE = 1.5
 @onready var current_cam = get_viewport().get_camera_3d()
 @onready var esc_menu = $CanvasLayer/ESCMENU
 @onready var anim_tree: AnimationTree = $scientist/AnimationTree
+
+
+@export var maxHealth = 100
+@onready var currentHealth: int = maxHealth
+signal healthChanged
+
 func _ready():
+	healthChanged.emit()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 func _unhandled_input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
@@ -73,7 +83,7 @@ func _physics_process(delta):
 	var velocity_clamped = clamp(velocity.length(), 0.5, SPRINT_SPEED * 2)
 	var target_fov = BASE_FOV + FOV_CHANGE + velocity_clamped
 	current_cam.fov = lerp(current_cam.fov, target_fov, delta * 2.0)
-
+	hurtPlayer()
 	update_animations()
 	move_and_slide()
 
@@ -96,3 +106,11 @@ func update_animations():
 	anim_tree["parameters/conditions/moving"] = plane_vel.length() != 0
 	anim_tree["parameters/conditions/not_moving"] = plane_vel.length() == 0
 	#anim_tree["parameters/conditions/on_floor"] = is_on_floor()
+
+func hurtPlayer():
+	if Input.is_action_just_pressed("JUMP"):
+		print(currentHealth)
+		currentHealth -= 2
+		if currentHealth < 0:
+			currentHealth = maxHealth
+		healthChanged.emit()

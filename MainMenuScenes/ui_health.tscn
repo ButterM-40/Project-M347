@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://c5iq3ngpl3iff"]
+
+[ext_resource type="Texture2D" uid="uid://hhixwbs7bk1s" path="res://UI/Untitled_Artwork-1.png" id="1_ymiqs"]
+[ext_resource type="Texture2D" uid="uid://c0pmuas4wuhbh" path="res://UI/Untitled_Artwork-5.png" id="2_myp54"]
+[ext_resource type="Texture2D" uid="uid://cecoy00ttsitu" path="res://UI/Untitled_Artwork-12.png" id="3_enn71"]
+[ext_resource type="Texture2D" uid="uid://d4gpfkl7xagv" path="res://UI/Untitled_Artwork-7.png" id="4_t8hnp"]
+[ext_resource type="Texture2D" uid="uid://mqnlop345rp2" path="res://UI/Untitled_Artwork-2.png" id="5_8afd4"]
+[ext_resource type="Texture2D" uid="uid://cueifs3o0ehyb" path="res://UI/Untitled_Artwork-13.png" id="6_a0bfq"]
+[ext_resource type="Texture2D" uid="uid://d12acwxkbqhdo" path="res://UI/Untitled_Artwork-3.png" id="7_rwteo"]
+[ext_resource type="Script" path="res://MainMenuScenes/HealthBar.gd" id="8_1wbc0"]
+
+[node name="UI Health" type="CanvasLayer"]
+
+[node name="Border" type="Sprite2D" parent="."]
+position = Vector2(579.706, 310.086)
+scale = Vector2(0.531209, 0.401129)
+texture = ExtResource("1_ymiqs")
+
+[node name="Green" type="Sprite2D" parent="."]
+position = Vector2(576.8, 227.85)
+scale = Vector2(0.485, 0.485)
+texture = ExtResource("2_myp54")
+
+[node name="Black" type="Sprite2D" parent="."]
+position = Vector2(576.8, 227.85)
+scale = Vector2(0.485, 0.485)
+texture = ExtResource("3_enn71")
+
+[node name="Red" type="Sprite2D" parent="."]
+position = Vector2(576.8, 227.85)
+scale = Vector2(0.485, 0.485)
+texture = ExtResource("4_t8hnp")
+
+[node name="Health Line" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(550.8, 244.85)
+scale = Vector2(0.485, 0.485)
+texture = ExtResource("5_8afd4")
+
+[node name="PotionsList" type="Sprite2D" parent="."]
+position = Vector2(576.8, 227.85)
+scale = Vector2(0.485, 0.485)
+texture = ExtResource("6_a0bfq")
+
+[node name="Health Hover" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(550.8, 244.85)
+scale = Vector2(0.485, 0.485)
+texture = ExtResource("7_rwteo")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+offset_left = 17.0
+offset_top = -103.0
+offset_right = 2514.0
+offset_bottom = 1517.0
+scale = Vector2(0.455, 0.455)
+max_value = 30.0
+fill_mode = 3
+texture_over = ExtResource("7_rwteo")
+texture_progress = ExtResource("5_8afd4")
+script = ExtResource("8_1wbc0")
