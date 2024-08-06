@@ -7,7 +7,5 @@ func _ready():
 	update()
 
 func update():
-	
 	value = player.currentHealth 
-	
 	print(value)

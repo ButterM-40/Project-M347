@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+class_name Player
+
 var speed
 const SPRINT_SPEED = 12.0
 const WALK_SPEED = 6.0
@@ -10,6 +12,7 @@ const SENSITIVITY = 0.0035
 const BOB_FEQ = 2.4
 const BOB_AMP = 0.08
 var t_bob = 0.0
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = 9.8
 
@@ -19,8 +22,6 @@ var is_jumping = false
 const BASE_FOV = 75.0
 const FOV_CHANGE = 1.5
 
-#@onready var head = $Head
-#@onready var camera = $Head/Camera3D
 @onready var current_cam = get_viewport().get_camera_3d()
 @onready var esc_menu = $UI/ESCMENU
 @onready var anim_tree: AnimationTree = $scientist/AnimationTree
@@ -29,9 +30,13 @@ const FOV_CHANGE = 1.5
 var throwable = preload("res://interactable items/throwables.tscn")
 var CanThrow = true
 
+# Health
+@export var maxHealth = 100
+@onready var currentHealth: int = maxHealth
+signal healthChanged
+
 func _ready():
-	#GameState.interact_label = $UI/CenterContainer/InteractLabel
-	#print(GameState.interact_label)
+	healthChanged.emit()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 func _unhandled_input(event):
@@ -75,13 +80,11 @@ func _physics_process(delta):
 		velocity.z = lerp(velocity.z, -direction.z * speed, delta * 2.0)
 	t_bob += delta * velocity.length() * float(is_on_floor())
   
-  
-	#head.transform.origin = _headbob(t_bob)
-	#camera.transform.origin = _headbob(t_bob)
 	var velocity_clamped = clamp(velocity.length(), 0.5, SPRINT_SPEED * 2)
 	var target_fov = BASE_FOV + FOV_CHANGE + velocity_clamped
 	current_cam.fov = lerp(current_cam.fov, target_fov, delta * 2.0)
-
+	
+	hurtPlayer()
 	update_animations()
 	move_and_slide()
 	
@@ -107,7 +110,7 @@ func update_animations():
 	anim_tree["parameters/conditions/moving"] = plane_vel.length() != 0
 	anim_tree["parameters/conditions/not_moving"] = plane_vel.length() == 0
 	#anim_tree["parameters/conditions/on_floor"] = is_on_floor()
-	
+
 func throwing():
 	if Input.is_action_just_released("THROWING") && CanThrow:
 		var throwins = throwable.instantiate()
@@ -123,8 +126,14 @@ func throwing():
 		var player_rotation = camera.global_transform.basis.z.normalized()
 		
 		throwins.apply_central_impulse(player_rotation * force + Vector3(0, arch, 0))
-		
-
 
 func _on_timer_timeout():
 	CanThrow = true
+
+func hurtPlayer():
+	if Input.is_action_just_pressed("JUMP"):
+		print(currentHealth)
+		currentHealth -= 2
+		if currentHealth < 0:
+			currentHealth = maxHealth
+		healthChanged.emit()
