@@ -3,20 +3,23 @@
 [ext_resource type="AudioStream" uid="uid://cr6kl7k6mbg87" path="res://Audio/cavernous_depths.mp3" id="1_1hs2s"]
 [ext_resource type="Script" path="res://Audio/AudioVisualizer.gd" id="1_06m7e"]
 
-[node name="CanvasLayer" type="CanvasLayer"]
-
-[node name="AudioVisualizer" type="Control" parent="."]
+[node name="CanvasLayer" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 908.0
-offset_top = 25.0
-offset_right = -144.0
-offset_bottom = -523.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+
+[node name="AudioVisualizer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
 scale = Vector2(1, 0.996631)
+mouse_filter = 2
 script = ExtResource("1_06m7e")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AudioVisualizer"]
@@ -25,10 +28,14 @@ autoplay = true
 bus = &"Music"
 
 [node name="CircleBase" type="ColorRect" parent="AudioVisualizer"]
+custom_minimum_size = Vector2(150, 150)
 layout_mode = 0
-offset_right = 200.0
-offset_bottom = 200.0
-color = Color(0, 0, 0, 1)
+offset_left = -160.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 160.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
 
 [node name="Right" type="Control" parent="AudioVisualizer/CircleBase"]
 layout_mode = 1

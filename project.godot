@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 GameState="*res://GameState.gd"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [input]
 
 LEFT={
@@ -70,3 +74,11 @@ THROWING={
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(188, 18),"global_position":Vector2(192, 59),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
+
+[rendering]
+
+environment/ssao/quality=0
+environment/ssil/quality=0
+environment/glow/upscale_mode=0
+environment/volumetric_fog/use_filter=0
+limits/opengl/max_lights_per_object=24

@@ -9,3 +9,8 @@ func glow():
 
 func fade():
 	$AnimationPlayer.play("fade")
+	await $AnimationPlayer.animation_finished
+	queue_free()
+
+func _on_body_entered(_body):
+	freeze = true
