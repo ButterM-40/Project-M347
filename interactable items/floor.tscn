@@ -49,7 +49,7 @@ _data = {
 "pressup": SubResource("Animation_8ly8g")
 }
 
-[node name="floor_button" type="StaticBody3D"]
+[node name="floor_button" type="StaticBody3D" groups=["Button"]]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 script = ExtResource("1_2bili")
 

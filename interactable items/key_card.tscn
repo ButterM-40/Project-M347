@@ -1,0 +1,56 @@
+[gd_scene load_steps=10 format=3 uid="uid://dl5rc0xq2xyy"]
+
+[sub_resource type="GDScript" id="GDScript_ek3a2"]
+script/source = "extends Interactable
+
+func _on_interacted(_body):
+	GameState.set_value(\"key\", GameState.get_value(\"key\") + 1)
+	queue_free()
+"
+
+[sub_resource type="BoxMesh" id="BoxMesh_gpkb6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fnt8j"]
+albedo_color = Color(0, 0.0630096, 0.438144, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gtrcb"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_egf5d"]
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_02yss"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8d5if"]
+albedo_color = Color(0.437799, 0.616361, 1, 1)
+metallic = 1.0
+metallic_specular = 1.0
+metallic_texture = SubResource("CurveXYZTexture_02yss")
+
+[sub_resource type="BoxMesh" id="BoxMesh_yjrbs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dob1a"]
+albedo_color = Color(0.85602, 0, 0.0404803, 1)
+
+[node name="KeyCard" type="RigidBody3D"]
+script = SubResource("GDScript_ek3a2")
+prompt_message = "Pick Up"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -0.1, 0, 0, 0)
+mesh = SubResource("BoxMesh_gpkb6")
+surface_material_override/0 = SubResource("StandardMaterial3D_fnt8j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 1.50996e-07, 0, -1.50996e-07, 1, 0, 0, 0, -0.15, 0, 0, 0.025987)
+shape = SubResource("BoxShape3D_gtrcb")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.4, -7.54979e-09, -2.64009e-15, 0, 2.18557e-09, -0.4, 6.03983e-08, -0.05, -1.74846e-08, -0.2, 0.25, 0.03)
+mesh = SubResource("CylinderMesh_egf5d")
+surface_material_override/0 = SubResource("StandardMaterial3D_8d5if")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.8, 0, 0, 0, 0.1, 0.218, 0, 0.03)
+mesh = SubResource("BoxMesh_yjrbs")
+surface_material_override/0 = SubResource("StandardMaterial3D_dob1a")
+
+[connection signal="interacted" from="." to="." method="_on_interacted"]

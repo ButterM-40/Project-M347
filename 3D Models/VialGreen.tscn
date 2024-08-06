@@ -107,3 +107,9 @@ shadow_mesh = SubResource("ArrayMesh_dt7s4")
 [node name="Vial Green" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_b001t")
 skeleton = NodePath("")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0, 1, 0, 1)
+light_energy = 5.979
+light_specular = 1.666
+omni_range = 15.898
