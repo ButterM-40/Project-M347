@@ -30,6 +30,8 @@ var throwable = preload("res://interactable items/throwables.tscn")
 var CanThrow = true
 
 func _ready():
+	#GameState.interact_label = $UI/CenterContainer/InteractLabel
+	#print(GameState.interact_label)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 func _unhandled_input(event):
