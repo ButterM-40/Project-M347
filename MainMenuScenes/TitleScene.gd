@@ -7,6 +7,7 @@ func _ready():
 
 func _on_play_pressed():
 	#Donny Modify This to get the selected tree.
+	get_tree().change_scene_to_file("res://dons_world.tscn")
 	pass # Replace with function body.
 
 

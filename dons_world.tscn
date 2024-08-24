@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cokeolt20o7ka"]
+[gd_scene load_steps=8 format=3 uid="uid://cokeolt20o7ka"]
 
 [ext_resource type="PackedScene" uid="uid://ccdnuwr8fpnx8" path="res://3D Models/VialRed.tscn" id="1_q34bd"]
 [ext_resource type="PackedScene" uid="uid://dwba3iqlh4sub" path="res://3D Models/VialGreen.tscn" id="2_o2od5"]
 [ext_resource type="PackedScene" uid="uid://b0fv43l6vte63" path="res://Player/3D_Player.tscn" id="3_2aqn3"]
 [ext_resource type="Script" path="res://Test Enviroment Scenes/3rdPersonCamera3D.gd" id="4_f0v6x"]
 [ext_resource type="PackedScene" uid="uid://d4n4ku2g40hs7" path="res://3D Models/lvl/meattunnel.tscn" id="6_f4kof"]
+[ext_resource type="Script" path="res://CanvasLayer.gd" id="6_g83mv"]
 
 [sub_resource type="Environment" id="Environment_hy03c"]
 background_mode = 1
@@ -48,3 +49,43 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.61958, 0.5, 0.5972)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 74.4482)
 light_energy = 16.0
 omni_range = 21.675
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("6_g83mv")
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 200.0
+offset_right = 1054.0
+offset_bottom = 406.0
+text = "You are a researcher for a mysterious organization that has been harnessing the power of a cave where the walls are made of flesh. After a containment breach, you are the sole survivor of your laboratory as it crashed down into the depths of the cave. FIND YOUR WAY BACK TO THE SURFACE"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Button" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 503.0
+offset_top = 380.0
+offset_right = 626.0
+offset_bottom = 433.0
+text = "CONTINUE"
+
+[connection signal="pressed" from="CanvasLayer/Control/Button" to="CanvasLayer" method="_on_button_pressed"]
