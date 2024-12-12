@@ -1,6 +1,6 @@
 extends RayCast3D
 
-@onready var prompt = $"../../../Hud/prompt"
+@onready var prompt = %InteractLabel
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
@@ -12,5 +12,5 @@ func _physics_process(_delta):
 		if collider is Interactable:
 			prompt.text = collider.get_prompt()
 
-			if Input.is_action_just_pressed(collider.prompt_message):
+			if Input.is_action_just_pressed(collider.prompt_input.to_upper()):
 				collider.interact(owner)

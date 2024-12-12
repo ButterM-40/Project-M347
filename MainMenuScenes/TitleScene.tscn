@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://jvkgf8m8uhih"]
+[gd_scene load_steps=6 format=3 uid="uid://jvkgf8m8uhih"]
 
 [ext_resource type="Script" path="res://MainMenuScenes/TitleScene.gd" id="1_n28l6"]
 [ext_resource type="FontFile" uid="uid://bkd46ofhpdm8g" path="res://UI/conthrax-sb.otf" id="2_c2rnx"]
 [ext_resource type="Texture2D" uid="uid://dcf7uomly1gne" path="res://MainMenuScenes/TitleScreen/IMG_9907.png" id="3_y606o"]
 [ext_resource type="Texture2D" uid="uid://b7jtigc4skopp" path="res://MainMenuScenes/TitleScreen/IMG_9908.png" id="4_n5g3o"]
+[ext_resource type="AudioStream" uid="uid://cr6kl7k6mbg87" path="res://Audio/cavernous_depths.mp3" id="5_s25ay"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -116,6 +117,10 @@ offset_right = 145.0
 offset_bottom = 59.0
 min_value = -80.0
 max_value = 0.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_s25ay")
+autoplay = true
 
 [connection signal="mouse_entered" from="MarginContainer/HBoxContainer/VBoxContainer/Play" to="." method="_on_play_mouse_entered"]
 [connection signal="mouse_exited" from="MarginContainer/HBoxContainer/VBoxContainer/Play" to="." method="_on_play_mouse_exited"]

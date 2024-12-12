@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=3 uid="uid://btxtbvwflmkyi"]
+
+[ext_resource type="PackedScene" uid="uid://dnknpblfuoni8" path="res://interactable items/floor.tscn" id="3_hw46q"]
+[ext_resource type="PackedScene" path="res://interactable items/key_card.tscn" id="4_ecryt"]
+[ext_resource type="PackedScene" uid="uid://b0fv43l6vte63" path="res://Player/3D_Player.tscn" id="4_lfnwk"]
+[ext_resource type="PackedScene" uid="uid://8tb1db006yf8" path="res://MovingPlatform/moving_platform.tscn" id="4_u08ly"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ka0ki"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_4scjj"]
+sky_material = SubResource("ProceduralSkyMaterial_ka0ki")
+
+[sub_resource type="Environment" id="Environment_xpfpf"]
+background_mode = 2
+sky = SubResource("Sky_4scjj")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ihv6t"]
+albedo_color = Color(9.62615e-08, 0.194414, 0.0461014, 1)
+
+[node name="Test World" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xpfpf")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Floor" type="CSGBox3D" parent="."]
+material_override = SubResource("StandardMaterial3D_ihv6t")
+use_collision = true
+size = Vector3(52.2824, 0.001, 81.1429)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, 0)
+snap = 0.1
+use_collision = true
+size = Vector3(1, 7.17432, 81.8405)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37118e-08, 0, 1.00001, 0, 1, 0, -1.00001, 0, -4.37118e-08, 0.886, 0, -41.327)
+use_collision = true
+size = Vector3(1, 7.17432, 52.6952)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.019, 0, 40.722)
+use_collision = true
+size = Vector3(1, 7.17432, 52.194)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 0, 0)
+use_collision = true
+size = Vector3(1, 7.17432, 81.8405)
+
+[node name="floor_button" parent="." instance=ExtResource("3_hw46q")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 3, 1, -13)
+prompt_message = "interact"
+
+[node name="floor_button2" parent="." instance=ExtResource("3_hw46q")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -1, 0, 2)
+prompt_message = "interact"
+
+[node name="Moving_platform" parent="." instance=ExtResource("4_u08ly")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, -14)
+
+[node name="KeyCard" parent="." instance=ExtResource("4_ecryt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -6)
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("4_lfnwk")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 2.84133, 11)

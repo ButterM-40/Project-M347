@@ -1,143 +1,91 @@
-[gd_scene load_steps=21 format=3 uid="uid://cokeolt20o7ka"]
+[gd_scene load_steps=8 format=3 uid="uid://cokeolt20o7ka"]
 
-[ext_resource type="PackedScene" uid="uid://ccdnuwr8fpnx8" path="res://3D Models/VialRed.tscn" id="2_mvmg1"]
-[ext_resource type="PackedScene" uid="uid://b0fv43l6vte63" path="res://Player/3D_Player.tscn" id="3_6iv87"]
-[ext_resource type="PackedScene" uid="uid://dwba3iqlh4sub" path="res://3D Models/VialGreen.tscn" id="3_rhcc3"]
-[ext_resource type="Script" path="res://Test Enviroment Scenes/3rdPersonCamera3D.gd" id="4_sjpxo"]
+[ext_resource type="PackedScene" uid="uid://ccdnuwr8fpnx8" path="res://3D Models/VialRed.tscn" id="1_q34bd"]
+[ext_resource type="PackedScene" uid="uid://dwba3iqlh4sub" path="res://3D Models/VialGreen.tscn" id="2_o2od5"]
+[ext_resource type="PackedScene" uid="uid://b0fv43l6vte63" path="res://Player/3D_Player.tscn" id="3_2aqn3"]
+[ext_resource type="Script" path="res://Test Enviroment Scenes/3rdPersonCamera3D.gd" id="4_f0v6x"]
+[ext_resource type="PackedScene" uid="uid://d4n4ku2g40hs7" path="res://3D Models/lvl/meattunnel.tscn" id="6_f4kof"]
+[ext_resource type="Script" path="res://CanvasLayer.gd" id="6_g83mv"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_hkcrn"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_o3byy"]
-size = Vector3(100, 1, 100)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xuu8f"]
-albedo_color = Color(0.905882, 0.101961, 0.129412, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_unkkl"]
-material = SubResource("StandardMaterial3D_xuu8f")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ll4kj"]
-size = Vector3(10, 1, 20)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_greij"]
-albedo_color = Color(0.0960645, 0.500016, 1, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_8krcy"]
-material = SubResource("StandardMaterial3D_greij")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_7g63g"]
-size = Vector3(10, 5, 20)
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_j60l0"]
-sky_top_color = Color(1, 0.556286, 0.492913, 1)
-sky_horizon_color = Color(0.27451, 0, 0, 1)
-ground_bottom_color = Color(0, 0, 0, 1)
-ground_horizon_color = Color(0.27451, 0, 0, 1)
-
-[sub_resource type="Sky" id="Sky_mkbgs"]
-sky_material = SubResource("ProceduralSkyMaterial_j60l0")
-
-[sub_resource type="Environment" id="Environment_ov6wn"]
-background_mode = 2
-background_energy_multiplier = 0.33
-sky = SubResource("Sky_mkbgs")
+[sub_resource type="Environment" id="Environment_hy03c"]
+background_mode = 1
+ambient_light_energy = 0.0
 glow_enabled = true
-glow_normalized = true
-glow_blend_mode = 1
-
-[sub_resource type="Curve" id="Curve_72mcj"]
-_data = [Vector2(0, 0.021978), 0.0, 2.72967, 0, 0, Vector2(0.115942, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_njacj"]
-curve = SubResource("Curve_72mcj")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yus1q"]
-spread = 180.0
-initial_velocity_max = 6.0
-scale_curve = SubResource("CurveTexture_njacj")
-turbulence_noise_scale = 1.022
-collision_mode = 1
-collision_friction = 1.0
-collision_bounce = 0.08
-collision_use_scale = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_srsr3"]
-albedo_color = Color(0, 1, 0, 1)
-emission_enabled = true
-emission = Color(0, 1, 0, 1)
-emission_energy_multiplier = 2.0
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_h246f"]
-material = SubResource("StandardMaterial3D_srsr3")
+fog_enabled = true
+fog_light_color = Color(0.155778, 0.0314497, 0.0598178, 1)
+fog_light_energy = 0.24
+fog_density = 0.0478
+fog_sky_affect = 0.0
 
 [node name="DonsWorld" type="Node3D"]
-
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0)
-mesh = SubResource("BoxMesh_hkcrn")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource("BoxShape3D_o3byy")
-
-[node name="StaticBody3D2" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.3629, 1.20227, -17.41)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
-transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
-mesh = SubResource("BoxMesh_unkkl")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
-shape = SubResource("BoxShape3D_ll4kj")
-
-[node name="StaticBody3D3" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.82099, 1.20227, -17.41)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D3"]
-transform = Transform3D(10, 0, 0, 0, 5, 0, 0, 0, 20, 0, 0, 0)
-mesh = SubResource("BoxMesh_8krcy")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
-shape = SubResource("BoxShape3D_7g63g")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.30405, 0.952656, 0, -0.952656, 0.30405, 0, -0.107723, 0)
 light_energy = 0.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_ov6wn")
+environment = SubResource("Environment_hy03c")
 
-[node name="VialRed" parent="." instance=ExtResource("2_mvmg1")]
+[node name="VialRed" parent="." instance=ExtResource("1_q34bd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.37759, 0.624282)
-
-[node name="VialGreen" parent="." instance=ExtResource("3_rhcc3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.38441, 0.838762)
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.7564, 8)
-amount = 15
-lifetime = 10.0
-speed_scale = 2.0
-explosiveness = 1.0
-randomness = 1.0
-process_material = SubResource("ParticleProcessMaterial_yus1q")
-draw_pass_1 = SubResource("PlaneMesh_h246f")
-
-[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="GPUParticles3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.633, 0)
-size = Vector3(17.1579, 3.44196, 20.4776)
-
-[node name="OmniLight3D" type="OmniLight3D" parent="GPUParticles3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 visible = false
-light_color = Color(0, 1, 0, 1)
-omni_range = 8.22528
 
-[node name="CharacterBody3D" parent="." instance=ExtResource("3_6iv87")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.66794, 0)
+[node name="VialGreen" parent="." instance=ExtResource("2_o2od5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.38441, 0.838762)
+visible = false
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("3_2aqn3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.452362, 54.4012)
 
 [node name="3rdPersonCamera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.97307, 0.230508, 0, -0.230508, 0.97307, 0, 9.09733, 8.31759)
-script = ExtResource("4_sjpxo")
+visible = false
+script = ExtResource("4_f0v6x")
+
+[node name="meattunnel" parent="." instance=ExtResource("6_f4kof")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.61958, 0.5, 0.5972)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 74.4482)
+light_energy = 16.0
+omni_range = 21.675
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("6_g83mv")
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 200.0
+offset_right = 1054.0
+offset_bottom = 406.0
+text = "You are a researcher for a mysterious organization that has been harnessing the power of a cave where the walls are made of flesh. After a containment breach, you are the sole survivor of your laboratory as it crashed down into the depths of the cave. FIND YOUR WAY BACK TO THE SURFACE"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Button" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 503.0
+offset_top = 380.0
+offset_right = 626.0
+offset_bottom = 433.0
+text = "CONTINUE"
+
+[connection signal="pressed" from="CanvasLayer/Control/Button" to="CanvasLayer" method="_on_button_pressed"]

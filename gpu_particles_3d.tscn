@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://b6bn5opqhwtdl"]
+
+[sub_resource type="Curve" id="Curve_72mcj"]
+_data = [Vector2(0, 0.021978), 0.0, 2.72967, 0, 0, Vector2(0.115942, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_njacj"]
+curve = SubResource("Curve_72mcj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yus1q"]
+spread = 180.0
+initial_velocity_max = 6.0
+scale_curve = SubResource("CurveTexture_njacj")
+turbulence_noise_scale = 1.022
+collision_mode = 1
+collision_friction = 1.0
+collision_bounce = 0.08
+collision_use_scale = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_srsr3"]
+albedo_color = Color(0, 1, 0, 1)
+emission_enabled = true
+emission = Color(0, 1, 0, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_h246f"]
+material = SubResource("StandardMaterial3D_srsr3")
+
+[node name="GPUParticles3D" type="GPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.7564, 8)
+cast_shadow = 0
+emitting = false
+amount = 15
+lifetime = 10.0
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_yus1q")
+draw_pass_1 = SubResource("PlaneMesh_h246f")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+visible = false
+light_color = Color(0, 1, 0, 1)
+omni_range = 8.22528
